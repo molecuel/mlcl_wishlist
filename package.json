@@ -1,0 +1,50 @@
+{
+  "name": "mlcl_wishlist",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "molecuel",
+    "cms",
+    "session"
+  ],
+  "dependencies": {
+    "underscore": ">=0.0.1",
+    "async": ">=0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": ">= 0.0.1",
+    "assert": ">=0.0.1",
+    "mocha-jshint": ">=0.0.1",
+    "express": ">=4.0.0",
+    "body-parser": ">=0.0.1",
+    "request": ">=0.0.1",
+    "mlcl_database": ">=0.0.1",
+    "mlcl_elastic": ">=0.0.1",
+    "mlcl_elements": ">=0.2.1",
+    "mlcl_url": ">=0.0.1",
+    "express": ">=0.0.1",
+    "express-session": ">=0.0.1",
+    "cookie-parser": ">=0.0.1"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "author": "Dominic Böttger <Dominic.Boettger@inspirationlabs.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/molecuel/mlcl_wishlist/issues"
+  },
+  "homepage": "https://github.com/molecuel/mlcl_wishlist",
+  "description": "Wishist module for molecuel CMS",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/molecuel/mlcl_wishlist.git"
+  }
+}
