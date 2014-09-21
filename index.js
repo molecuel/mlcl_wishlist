@@ -21,7 +21,7 @@ var wishlist = function() {
       creation: { type: Date, 'default': Date.now, form: {readonly: true}},
       entries: {
       },
-      listelements: [{type: elements.ObjectId}]
+      listelements: [{type: elements.Types.Mixed}]
     };
 
     _.each(molecuel.config.wishlist.types, function(type) {
@@ -59,7 +59,7 @@ var getInstance = function () {
   return instance;
 };
 
-wishlist.prototype.getMyList = function getMyList(req, res) {
+wishlist.prototype.getMyList = function getMyList(req, res, next) {
   var self = getInstance();
   self.getListFromRequest(req, function(err, result) {
     if(result) {
@@ -92,7 +92,6 @@ wishlist.prototype.addItemToWishList = function addItemToWishList(req, res, item
 
   var addToWishlistObject = function addToWishlistObject(userwishlist) {
     if(item.type && item.id) {
-      userwishlist.listelements = [];
       if(userwishlist.entries && userwishlist.entries[item.type]) {
         var index = userwishlist.entries[item.type].indexOf(item.id);
         if(index > -1) {
@@ -100,7 +99,9 @@ wishlist.prototype.addItemToWishList = function addItemToWishList(req, res, item
         }
         userwishlist.entries[item.type].push(item.id);
       } else {
-        userwishlist.listelements.push({type: item.type, id: item.id});
+        if(!_.findWhere(userwishlist.listelements, item)) {
+          userwishlist.listelements.push({type: item.type, id: item.id});
+        }
       }
       userwishlist.save(function(err, doc) {
         if(err) {
@@ -139,14 +140,15 @@ wishlist.prototype.removeItemFromWishList = function removeItemFromWishList(req,
 
   var removeFromWishlistObject = function removeFromWishlistObject(userwishlist) {
     if(item.type && item.id) {
-      userwishlist.listelements = [];
       if(userwishlist.entries && userwishlist.entries[item.type]) {
         var index = userwishlist.entries[item.type].indexOf(item.id);
         if(index > -1) {
           userwishlist.entries[item.type].splice(index, 1);
         }
       } else {
-
+        userwishlist.listelements = _.reject(userwishlist.listelements, function(el) {
+          return el.type == item.type && el.id == item.id;
+        });
       }
       userwishlist.save(function(err, doc) {
         if(err) {
