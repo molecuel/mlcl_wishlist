@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "underscore": ">=0.0.1",
-    "async": ">=0.0.1"
+    "async": ">=3.2.0"
   },
   "devDependencies": {
     "mocha": "*",
