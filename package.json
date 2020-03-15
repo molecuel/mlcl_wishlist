@@ -30,7 +30,7 @@
     "mlcl_url": ">=0.0.1",
     "express": ">=0.0.1",
     "express-session": ">=0.0.1",
-    "cookie-parser": ">=0.0.1"
+    "cookie-parser": ">=1.4.5"
   },
   "scripts": {
     "test": "mocha -R spec"
